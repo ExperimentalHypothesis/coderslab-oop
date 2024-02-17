@@ -9,6 +9,8 @@ class Shape:
         print(f"This is a shape with x {self.x} and y {self.y}")
 
     def distance(self, other):
+        if not isinstance(other, Shape):
+            raise TypeError(f"Type {type(other)} not supported to distance calculation")
         dx = self.x - other.x
         dy = self.y = other.y
         return math.hypot(dx, dy)
@@ -18,7 +20,7 @@ class Shape:
 
 
 if __name__ == "__main__":
-    s = Shape(1,2)
+    s = Shape(1, 2)
     print(s)
     s.describe()
 

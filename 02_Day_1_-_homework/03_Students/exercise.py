@@ -8,6 +8,9 @@ class Student:
         self.year_of_birth = year_of_birth
         self.grade_avg = grade_avg
 
+    def __str__(self):
+        return f"{self.name} {self.surname}"
+
     @classmethod
     def from_file(cls, file, class_name=None):
         students = []
@@ -18,3 +21,9 @@ class Student:
                         cls(row[0], row[1], row[2], int(row[3]), float(row[4]))
                     )
         return students
+
+
+if __name__ == "__main__":
+    students = Student.from_file("students.csv", "1A")
+    for s in students:
+        print(s)

@@ -18,7 +18,7 @@ def main(usdpln_rates):
                 print(f'Invalid choice: {choice}')
             else:
                 break
-        if choice in ('k', 'buy'):
+        if choice in ('b', 'buy'):
             wallet_usd += wallet_pln / usdpln_rate
             wallet_pln = 0
         elif choice in ('s', 'sell'):

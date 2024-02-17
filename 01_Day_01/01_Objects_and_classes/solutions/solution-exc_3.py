@@ -1,4 +1,3 @@
-
 class BankAccount:
     def __init__(self, number: int):
         self.number = number
@@ -16,7 +15,6 @@ class BankAccount:
             return disposable
 
         self.cash -= amount
-        print("else")
         return amount
 
     def print_info(self):
