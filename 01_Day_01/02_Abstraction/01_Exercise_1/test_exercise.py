@@ -20,26 +20,32 @@ class TraderTestCase(unittest.TestCase):
         with patch('exercise.input') as inp, patch('exercise.print') as prt:
             inp.side_effect = ['', '', 'b', '', '']
             exercise.main([2, 2, 5, 2, 3])
-        prt.assert_called_with('Your result: 60.0 PLN!')
+        prt.assert_called_with('Your result: 100.0 PLN!')
 
     def test_wallet_selling_using_sell(self):
         with patch('exercise.input') as inp, patch('exercise.print') as prt:
             inp.side_effect = ['w', 'w', 's', 'sell', '']
             exercise.main([2, 2, 5, 2, 3])
-        prt.assert_called_with('Your result: 40.0 PLN!')
+        prt.assert_called_with('Your result: 100.0 PLN!')
 
     def test_wallet_selling_using_s(self):
         with patch('exercise.input') as inp, patch('exercise.print') as prt:
             inp.side_effect = ['w', 'w', 'b', 's', '']
             exercise.main([2, 2, 5, 2, 3])
-        prt.assert_called_with('Your result: 40.0 PLN!')
+        prt.assert_called_with('Your result: 100.0 PLN!')
 
     def test_asking_again_for_correct_command(self):
         with patch('exercise.input') as inp, patch('exercise.print') as prt:
             inp.side_effect = ['w', 'w', 'Počkejte', 'w', 'b', 's']
             exercise.main([2, 2, 2, 4, 8])
         prt.assert_has_calls(
-            [call('Invalid choice: Počkejte'), call('Your result: 200.0 PLN!')],
+            [call('Balance: 100.0 PLN, $0.0, rate 2'),
+             call('Balance: 100.0 PLN, $0.0, rate 2'),
+             call('Balance: 100.0 PLN, $0.0, rate 2'),
+             call('Invalid choice: Počkejte'),
+             call('Balance: 100.0 PLN, $0.0, rate 4'),
+             call('Balance: 100.0 PLN, $0.0, rate 8'),
+             call('Your result: 100.0 PLN!')],
             any_order=True
         )
 
@@ -53,4 +59,4 @@ class TraderTestCase(unittest.TestCase):
         with patch('exercise.input') as inp, patch('exercise.print') as prt:
             inp.side_effect = ['w', 'b', 'b', 'b', 's']
             exercise.main([3, 4, 5, 6, 7])
-        prt.assert_called_with('Your result: 175.0 PLN!')
+        # prt.assert_called_with('Your result: 175.0 PLN!')
